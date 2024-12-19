@@ -2,18 +2,18 @@
 export default {
   bootstrap: () => import('./main.server.mjs').then(m => m.default),
   inlineCriticalCss: true,
-  baseHref: '/<SmsRateLimiter>/',
+  baseHref: '/SmsRateLimiter/',
   locale: undefined,
   routes: [
   {
     "renderMode": 2,
-    "route": "/<SmsRateLimiter>"
+    "route": "/SmsRateLimiter"
   }
 ],
   assets: {
-    'index.csr.html': {size: 524, hash: '18777a73b089ac81b1a3f8a4e6d15a9ee873c7d136c06bb7cbfe06af0a48ab2b', text: () => import('./assets-chunks/index_csr_html.mjs').then(m => m.default)},
-    'index.server.html': {size: 1037, hash: 'd938d07e707e8b20a55e4ae320b2f3e087254369072d425b528990d41468c9fb', text: () => import('./assets-chunks/index_server_html.mjs').then(m => m.default)},
-    'index.html': {size: 3607, hash: '79ed6b47eef30b6094e800ffda4c7f056fced5716176519919a66832fb2ee359', text: () => import('./assets-chunks/index_html.mjs').then(m => m.default)},
+    'index.csr.html': {size: 522, hash: 'ba2a7146d2ed09ccc92284d77173e68467e74390c284434e584a8bc2e5aa0764', text: () => import('./assets-chunks/index_csr_html.mjs').then(m => m.default)},
+    'index.server.html': {size: 1035, hash: '83a018d8b7930518c00a8465e0cd391ac3d560d6db4f13b652faae7f538fd0fc', text: () => import('./assets-chunks/index_server_html.mjs').then(m => m.default)},
+    'index.html': {size: 3579, hash: '0f6d51b920a3df769ac197aec76dc0b523f1e8d29fdd9ce0cef7338e9f006b47', text: () => import('./assets-chunks/index_html.mjs').then(m => m.default)},
     'styles-5INURTSO.css': {size: 0, hash: 'menYUTfbRu8', text: () => import('./assets-chunks/styles-5INURTSO_css.mjs').then(m => m.default)}
   },
 };

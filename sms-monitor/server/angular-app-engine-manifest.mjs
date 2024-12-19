@@ -1,6 +1,6 @@
 
 export default {
-  basePath: '/SmsRateLimiter/',
+  basePath: '/<SmsRateLimiter>/',
   entryPoints: {
     '': () => import('./main.server.mjs')
   },
