@@ -36,8 +36,6 @@ var app = builder.Build();
  // Enable CORS
 app.UseCors("AllowFrontend");
 
-app.MapGet("/monitor/account", () => Results.Json(new { message = "Account data" }));
-
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

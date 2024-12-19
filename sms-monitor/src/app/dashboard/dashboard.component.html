@@ -28,10 +28,10 @@
 
     <div>
         <label for="startDate">Start Date:</label>
-        <input type="datetime-local" id="startDate" name="startDate">
+        <input type="date" id="startDate" name="startDate">
         
         <label for="endDate">End Date:</label>
-        <input type="datetime-local" id="endDate" name="endDate">
+        <input type="date" id="endDate" name="endDate">
         
         <label for="phoneNumber">Phone Number:</label>
         <input type="text" id="phoneNumber" name="phoneNumber">
@@ -39,95 +39,5 @@
         <button id="fetchDataButton" (click)="fetchData()">Fetch Data</button>
 
     </div>
-
-    <script >
-          document.addEventListener('DOMContentLoaded', () => {
-            console.log("1Fetching data...");
-            const button = document.getElementById('fetchDataButton');
-            button.addEventListener('click',async () => {
-                console.log("Fetching data...");
-                const startDate = document.getElementById('startDate').value;
-                const endDate = document.getElementById('endDate').value;
-                const phoneNumber = document.getElementById('phoneNumber').value;
-                try{
-                const accountResponse = await fetch(`/monitor/account?startDate=${startDate}&endDate=${endDate}`);
-                const accountData = await accountResponse.json();
-            
-            // Fetch Number Data
-            const numberResponse = await fetch(`/monitor/number?phoneNumber=${phoneNumber}&startDate=${startDate}&endDate=${endDate}`);
-            const numberData = await numberResponse.json();
-            updateAccountChart(accountData);
-            updateNumberChart(numberData);
-                console.log(`Start Date: ${startDate}, End Date: ${endDate}, Phone Number: ${phoneNumber}`);
-            } catch (error) {
-            console.error("An error occurred while fetching data:", error);
-        }
-            
-            });
-        });
-       async function fetchData() {
-            console.log("Fetching data...");
-            const startDate = document.getElementById('startDate').value;
-            const endDate = document.getElementById('endDate').value;
-            const phoneNumber = document.getElementById('phoneNumber').value;
-            console.log("fetch data");
-            console.log(startDate );
-            console.log(endDate );
-            // Fetch Account Data
-            try {
-            const accountResponse = await fetch(`/monitor/account?startDate=${startDate}&endDate=${endDate}`);
-            const accountData = await accountResponse.json();
-            
-            // Fetch Number Data
-            const numberResponse = await fetch(`/monitor/number?phoneNumber=${phoneNumber}&startDate=${startDate}&endDate=${endDate}`);
-            const numberData = await numberResponse.json();
-            console.log(accountData );
-            console.log(numberData );
-            // Update the charts
-            updateAccountChart(accountData);
-            updateNumberChart(numberData);
-        } catch (error) {
-                console.error("Error fetching data:", error);
-            }
-        };
-
-        const updateAccountChart = (data) => {
-            const ctx = document.getElementById('accountChart').getContext('2d');
-            const labels = data.map(item => item.date);
-            const messagesSent = data.map(item => item.messagesSent);
-
-            new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: 'Messages Sent',
-                        data: messagesSent,
-                        borderColor: 'rgba(75, 192, 192, 1)',
-                        tension: 0.1
-                    }]
-                }
-            });
-        };
-
-        const updateNumberChart = (data) => {
-            const ctx = document.getElementById('numberChart').getContext('2d');
-            const labels = data.map(item => item.date);
-            const messagesSent = data.map(item => item.messagesSent);
-
-            new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: 'Messages Sent',
-                        data: messagesSent,
-                        borderColor: 'rgba(255, 99, 132, 1)',
-                        tension: 0.1
-                    }]
-                }
-            });
-        };
-    </script>
 </body>
 </html>

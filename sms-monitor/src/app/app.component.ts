@@ -10,9 +10,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';;
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [DashboardComponent], 
   styleUrls: ['./app.component.css']
-  //imports: [RouterOutlet],
- // templateUrl: './app.component.html',
- // styleUrl: './app.component.css'
+
 })
 export class AppComponent {
   title = 'sms-monitor';
