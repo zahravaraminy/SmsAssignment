@@ -5748,11 +5748,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\assignment\\SmsRateLimiter.Tests\\SmsRateLimiter.Tests.csproj",
+      "projectUniqueName": "C:\\Sms-RateLimiter-Assignment\\SmsRateLimiter.Tests\\SmsRateLimiter.Tests.csproj",
       "projectName": "SmsRateLimiter.Tests",
-      "projectPath": "C:\\assignment\\SmsRateLimiter.Tests\\SmsRateLimiter.Tests.csproj",
+      "projectPath": "C:\\Sms-RateLimiter-Assignment\\SmsRateLimiter.Tests\\SmsRateLimiter.Tests.csproj",
       "packagesPath": "C:\\Users\\Zahra\\.nuget\\packages\\",
-      "outputPath": "C:\\assignment\\SmsRateLimiter.Tests\\obj\\",
+      "outputPath": "C:\\Sms-RateLimiter-Assignment\\SmsRateLimiter.Tests\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Zahra\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -5767,8 +5767,8 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\assignment\\SmsRateLimiter\\SmsRateLimiter.csproj": {
-              "projectPath": "C:\\assignment\\SmsRateLimiter\\SmsRateLimiter.csproj"
+            "C:\\Sms-RateLimiter-Assignment\\SmsRateLimiter\\SmsRateLimiter.csproj": {
+              "projectPath": "C:\\Sms-RateLimiter-Assignment\\SmsRateLimiter\\SmsRateLimiter.csproj"
             }
           }
         }

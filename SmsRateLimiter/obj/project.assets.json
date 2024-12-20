@@ -5217,11 +5217,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\assignment\\SmsRateLimiter\\SmsRateLimiter.csproj",
+      "projectUniqueName": "C:\\Sms-RateLimiter-Assignment\\SmsRateLimiter\\SmsRateLimiter.csproj",
       "projectName": "SmsRateLimiter",
-      "projectPath": "C:\\assignment\\SmsRateLimiter\\SmsRateLimiter.csproj",
+      "projectPath": "C:\\Sms-RateLimiter-Assignment\\SmsRateLimiter\\SmsRateLimiter.csproj",
       "packagesPath": "C:\\Users\\Zahra\\.nuget\\packages\\",
-      "outputPath": "C:\\assignment\\SmsRateLimiter\\obj\\",
+      "outputPath": "C:\\Sms-RateLimiter-Assignment\\SmsRateLimiter\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Zahra\\AppData\\Roaming\\NuGet\\NuGet.Config"
