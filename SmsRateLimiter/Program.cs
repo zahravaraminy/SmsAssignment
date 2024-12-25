@@ -13,6 +13,8 @@ builder.Services.AddSingleton<SmsController>(); // Registers the SmsController
 builder.Services.AddSingleton<SlidingWindow>(provider => new SlidingWindow(10)); // Account-wide limit (10 messages per second)
 
 builder.Services.AddSingleton<ConcurrentDictionary<string, SlidingWindow>>(); // Per-number limits as singleton
+builder.Services.AddSingleton<ConcurrentDictionary<string, AccountMonitorModel>>();
+builder.Services.AddSingleton<ConcurrentDictionary<string, List<NumberMonitorModel>>>();
 
 
 builder.Services.AddControllers();
