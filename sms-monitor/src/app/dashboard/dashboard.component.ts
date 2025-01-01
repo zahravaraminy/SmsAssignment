@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
+import { HttpErrorResponse, provideHttpClient } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http'; // Import HttpClient
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms'; // Import FormsModule
 Chart.register(...registerables);
 
 let accountChartInstance: Chart | null = null;
@@ -9,11 +13,16 @@ let numberChartInstance: Chart | null = null;
   selector: 'app-dashboard',
   standalone: true,
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  styleUrls: ['./dashboard.component.css'],
+  imports: [CommonModule, FormsModule],
 })
 
 
 export class DashboardComponent {
+  constructor(private http: HttpClient) {} // Inject HttpClient here
+  smsList: { accountId: string; phoneNumber: string }[] = [
+    { accountId: '', phoneNumber: '' }
+  ]; // Initial row for SMS details
 
   async fetchData(): Promise<void> {
     try {
@@ -25,14 +34,16 @@ export class DashboardComponent {
 
       // Validate input elements
       if (!startDateInput || !endDateInput) {
-        throw new Error('Start date and end date input elements are required.');
+        alert('Start date and end date input elements are required.');
+      return;
       }
 
       const startDate = startDateInput.value ? `${startDateInput.value}T00:00:00Z` : null;
       const endDate = endDateInput.value ? `${endDateInput.value}T23:59:59Z` : null;
 
       if (!startDate || !endDate) {
-        throw new Error('Start date and end date are required.');
+        alert('Start date and end date input elements are required.');
+      return;
       }
 
       // Fetch data concurrently
@@ -59,6 +70,59 @@ export class DashboardComponent {
     }
   } 
 
+  addSmsRow(): void {
+    this.smsList.push({ accountId: '', phoneNumber: '' });
+  }
+
+  removeSmsRow(index: number): void {
+    if (this.smsList.length > 1) {
+      this.smsList.splice(index, 1);
+    }
+  }
+  sendSms(): void {
+    // Get the values from the input fields
+    const accountIdInput = document.getElementById('accountId') as HTMLInputElement;
+    const phoneInput = document.getElementById('phone') as HTMLInputElement;
+  
+    const accountId = accountIdInput?.value.trim() || '';
+    const phoneNumber = phoneInput?.value.trim() || '';
+  
+    // Validate inputs
+    for (const sms of this.smsList) {
+      if (!sms.accountId || !sms.phoneNumber) {
+        alert('All Account IDs and Phone Numbers must be filled.');
+        return;
+      }
+    }
+  
+     // Send requests for each pair
+     const requests = this.smsList.map((sms) =>
+      this.http
+        .post('http://localhost:5115/api/sms/can-send', sms, { responseType: 'text' })
+        .toPromise()
+    );
+
+  
+      // Wait for all requests to complete
+      Promise.allSettled(requests)
+  .then((results) => {
+    results.forEach((result, index) => {
+      if (result.status === 'fulfilled') {
+        alert(`for ${this.smsList[index].phoneNumber}: ${result.value}`);
+      } else {
+        // Check if the result.reason is an HttpErrorResponse
+        const errorResponse = result.reason as HttpErrorResponse;
+        const errorMessage =
+          errorResponse.error?.message || errorResponse.message || "Unknown error";
+
+        alert(`for ${this.smsList[index].phoneNumber}: ${errorMessage}`);
+      }
+    });
+  });
+
+  
+  }
+  
 
   updateAccountChart(data: AccountData[]): void {
     const canvas = document.getElementById('accountChart') as HTMLCanvasElement | null;

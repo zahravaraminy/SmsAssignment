@@ -1,4 +1,3 @@
-<!-- src/app/dashboard/dashboard.component.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,7 +36,23 @@
         <input type="text" id="phoneNumber" name="phoneNumber">
         
         <button id="fetchDataButton" (click)="fetchData()">Fetch Data</button>
-
     </div>
+
+    <div>
+        <h2>Send SMS</h2>
+        <div *ngFor="let sms of smsList; let i = index">
+          <label for="accountId-{{ i }}">Account ID:</label>
+          <input id="accountId-{{ i }}" [(ngModel)]="sms.accountId" placeholder="Enter Account ID" />
+          
+          <label for="phoneNumber-{{ i }}">Phone Number:</label>
+          <input id="phoneNumber-{{ i }}" [(ngModel)]="sms.phoneNumber" placeholder="Enter Phone Number" />
+      
+          <button *ngIf="smsList.length > 1" (click)="removeSmsRow(i)">-</button>
+        </div>
+        
+        <button (click)="addSmsRow()">+</button>
+        <button (click)="sendSms()">Send SMS</button>
+    </div>
+      
 </body>
 </html>

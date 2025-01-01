@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AppRoutingModule } from './app-routing.module'; // Import the routing module
+//import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'; // Import provideHttpClient and withInterceptorsFromDi
 
 @NgModule({
   declarations: [
@@ -11,7 +12,7 @@ import { AppRoutingModule } from './app-routing.module'; // Import the routing m
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   bootstrap: [AppComponent]
 })

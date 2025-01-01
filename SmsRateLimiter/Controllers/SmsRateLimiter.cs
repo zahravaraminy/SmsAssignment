@@ -35,6 +35,11 @@ namespace SmsRateLimiter
         [HttpPost("can-send")]
         public IActionResult CanSend([FromBody] SmsRequest request)
         {
+             if (request == null)
+            {
+                return BadRequest("Invalid request payload.");
+            }
+
             var timestamp = DateTime.UtcNow;
             var accountId = request.AccountId; // Assume this is part of the request model
 
@@ -46,11 +51,13 @@ namespace SmsRateLimiter
             if (!numberWindow.TryAddMessage())
                 return BadRequest("Per-number limit exceeded.");
 
+
             // Check account-wide limit
             if (!_accountLimit.TryAddMessage())
             {
                 numberWindow.Rollback(); // Rollback per-number counter
-                return BadRequest("Account-wide limit exceeded.");
+                return BadRequest("Account-wide limit exceeded." );
+
             }
 
             // Update account data
