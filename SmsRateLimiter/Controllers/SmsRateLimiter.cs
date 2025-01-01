@@ -127,8 +127,8 @@ namespace SmsRateLimiter
 
     public class SmsRequest
     {
-    public string PhoneNumber { get; set; } // Existing property
-    public string AccountId { get; set; }   // Add this property
+        public string PhoneNumber { get; set; } // Existing property
+        public string AccountId { get; set; }   // Add this property
     }
 
     public class SlidingWindow
